@@ -1,0 +1,40 @@
+# minimalistic github workflow
+name: Execution on custom runner
+# events that trigger the workflow
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Worklow -> jobs -> actions. Jobs can run in sequence or parallel
+# This workflow contains two jobs
+jobs:
+  # job 1 - runs on our custom runner labeled acg-ephermal
+  init:
+    runs-on: acg-ephermal
+    steps: 
+      - run: echo "Hello - from github workflow"
+      - run: echo "Custom Runner HostName = $HOSTNAME"
+      - run: echo `uptime`
+      
+  # job 2 - runs on github runners
+  build:
+    # runner type - ubuntu linux, can be windwos or macos also
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out src code repository under $GITHUB_WORKSPACE using comunity actions.
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
