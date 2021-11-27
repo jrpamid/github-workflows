@@ -4,6 +4,7 @@ on:
     branches:
       - dev
       - feature
+      - cloudrun-test
 
   pull_request:
     branches:
