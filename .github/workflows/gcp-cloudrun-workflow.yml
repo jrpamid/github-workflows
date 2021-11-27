@@ -46,7 +46,7 @@ jobs:
 
       - name: "4 -> build and tag the container image using the Dockerfile from the source repo"
         run: |
-          docker build -t gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{github.sha}} .
+          docker build -t gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{github.sha}} java/gitactions/
           docker push gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{github.sha}}
 
       - name: "5 -> deploy the conatiner image to  cloud run"
@@ -55,6 +55,7 @@ jobs:
             --region ${{ env.REGION }} \
             --image gcr.io/${{env.GCP_PROJECT_ID}}/${{env.SERVICE_NAME}}:${{github.sha}} \
             --allow-unauthenticated ${{env.ALLOW_UNAUTHENTICATED}} \
+            --context java\gitactions
             --quiet \
             --min-instances ${{ env.MIN_INSTANCES }} \
             --max-instances ${{ env.MAX_INSTANCES }} \
