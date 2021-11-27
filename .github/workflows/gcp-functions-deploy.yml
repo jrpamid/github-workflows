@@ -1,0 +1,44 @@
+name: gcp-functions-deploy
+on:
+  push:
+    branches:
+      - functions-test
+
+  pull_request:
+    branches:
+      - main
+env:
+  GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  FUNCTION_NAME: diwali_wishes
+  REGION: asia-south1
+  RUNTIME: python39
+  MIN_INSTANCES: 1
+  MAX_INSTANCES: 3
+  CPU: 1
+  MEMORY: 512Mi
+  EXTRA_FLAGS: '--trigger-http --allow-unauthenticated'
+
+jobs:
+  checkout-build-push-deploy:
+    name: "checkout -> deploy function"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "1 -> checkout code from github"
+        uses: actions/checkout@master 
+
+      - name: "2 -> setup gcloud sdk/cli"
+        uses: google-github-actions/setup-gcloud@master 
+
+      - name: "3 -> deploy cloud function"
+        run: |
+          gcloud functions deploy ${{env.FUNCTION_NAME}} \
+            --region ${{ env.REGION }} \
+            --runtime ${ env.RUNTIME }} \
+            --min-instances ${{ env.MIN_INSTANCES }} \
+            --max-instances ${{ env.MAX_INSTANCES }} \
+            --cpu ${{ env.CPU }} \
+            --meory ${{ env.MEMORY }} \
+            ${{ env.FLAGS }}
+
+
+  

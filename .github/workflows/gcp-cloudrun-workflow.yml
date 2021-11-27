@@ -21,7 +21,7 @@ env:
 
 jobs:
   checkout-build-push-deploy: 
-    name: "checkout -> container build -> image push -> deploy on cloud run"
+    name: "checkout -> image build -> image push -> deploy on cloud run"
     runs-on: ubuntu-latest
     steps:
       - name: "1 -> checkout code from github"
