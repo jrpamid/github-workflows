@@ -3,7 +3,8 @@ name: Execution on custom runner
 # events that trigger the workflow
 on:
   push:
-    branches: [ main, dev ]
+    branches: [ runner-test ]
+
   pull_request:
     branches: [ main ]
 
