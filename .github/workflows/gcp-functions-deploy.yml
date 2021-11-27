@@ -34,11 +34,12 @@ jobs:
           gcloud functions deploy ${{env.FUNCTION_NAME}} \
             --region ${{ env.REGION }} \
             --runtime ${{ env.RUNTIME }} \
+            --entry-point ${{ env.FUNCTION_NAME }} \
             --min-instances ${{ env.MIN_INSTANCES }} \
             --max-instances ${{ env.MAX_INSTANCES }} \
             --cpu ${{ env.CPU }} \
-            --meory ${{ env.MEMORY }} \
-            ${{ env.FLAGS }}
+            --memory ${{ env.MEMORY }} \
+            ${{ env.EXTRA_FLAGS }}
 
 
   
