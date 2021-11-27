@@ -15,7 +15,7 @@ env:
   MAX_INSTANCES: 3
   MEMORY: 256Mi
   EXTRA_FLAGS: '--trigger-http --allow-unauthenticated'
-  GOOGLE_FUNCTION_SOURCE: 'python/diwali/function.py'
+  GOOGLE_FUNCTION_SOURCE: './python/diwali/function.py'
 
 jobs:
   checkout-build-push-deploy:
