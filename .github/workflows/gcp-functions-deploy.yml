@@ -13,8 +13,7 @@ env:
   REGION: asia-south1
   RUNTIME: python39
   MAX_INSTANCES: 3
-  CPU: 1
-  MEMORY: 512Mi
+  MEMORY: 256Mi
   EXTRA_FLAGS: '--trigger-http --allow-unauthenticated'
 
 jobs:
@@ -35,7 +34,6 @@ jobs:
             --runtime ${{ env.RUNTIME }} \
             --entry-point ${{ env.FUNCTION_NAME }} \
             --max-instances ${{ env.MAX_INSTANCES }} \
-            --cpu ${{ env.CPU }} \
             --memory ${{ env.MEMORY }} \
             ${{ env.EXTRA_FLAGS }}
 
