@@ -12,7 +12,6 @@ env:
   FUNCTION_NAME: diwali_wishes
   REGION: asia-south1
   RUNTIME: python39
-  MIN_INSTANCES: 1
   MAX_INSTANCES: 3
   CPU: 1
   MEMORY: 512Mi
@@ -35,7 +34,6 @@ jobs:
             --region ${{ env.REGION }} \
             --runtime ${{ env.RUNTIME }} \
             --entry-point ${{ env.FUNCTION_NAME }} \
-            --min-instances ${{ env.MIN_INSTANCES }} \
             --max-instances ${{ env.MAX_INSTANCES }} \
             --cpu ${{ env.CPU }} \
             --memory ${{ env.MEMORY }} \
