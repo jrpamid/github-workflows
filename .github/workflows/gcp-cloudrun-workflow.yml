@@ -13,12 +13,11 @@ env:
   GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   SERVICE_NAME: gitactions 
   REGION: asia-south1 
-  ALLOW_UNAUTHENTICATED: true
   MIN_INSTANCES: 1
   MAX_INSTANCES: 3
   CPU: 1
   MEMORY: 512 MiB
-  PLATFORM: 
+  EXTRA_FLAGS: '--allow-unauthenticated'
 
 jobs:
   checkout-build-push-deploy: 
@@ -54,14 +53,13 @@ jobs:
           gcloud run deploy ${{ env.SERVICE_NAME }} \
             --region ${{ env.REGION }} \
             --image gcr.io/${{env.GCP_PROJECT_ID}}/${{env.SERVICE_NAME}}:${{github.sha}} \
-            --allow-unauthenticated ${{env.ALLOW_UNAUTHENTICATED}} \
-            --context java\gitactions
-            --quiet \
             --min-instances ${{ env.MIN_INSTANCES }} \
             --max-instances ${{ env.MAX_INSTANCES }} \
             --cpu ${{ env.CPU }} \
             --memory ${{ env.MEMORY }} \
-            --labels 'tag=${{ github.sha }}'
+            --labels 'tag=${{ github.sha }}' \
+            --quiet ${{env.EXTRA_FLAGS}} 
+
 
 
 
