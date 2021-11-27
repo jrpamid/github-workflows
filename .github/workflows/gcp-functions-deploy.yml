@@ -33,7 +33,7 @@ jobs:
         run: |
           gcloud functions deploy ${{env.FUNCTION_NAME}} \
             --region ${{ env.REGION }} \
-            --runtime ${ env.RUNTIME }} \
+            --runtime ${{ env.RUNTIME }} \
             --min-instances ${{ env.MIN_INSTANCES }} \
             --max-instances ${{ env.MAX_INSTANCES }} \
             --cpu ${{ env.CPU }} \
