@@ -16,12 +16,12 @@ env:
   MIN_INSTANCES: 1
   MAX_INSTANCES: 3
   CPU: 1
-  MEMORY: 512 MiB
+  MEMORY: 512Mi
   EXTRA_FLAGS: '--allow-unauthenticated'
 
 jobs:
   checkout-build-push-deploy: 
-    name: "checkout build push deploy"
+    name: "checkout -> container build -> image push -> deploy on cloud run"
     runs-on: ubuntu-latest
     steps:
       - name: "1 -> checkout code from github"
