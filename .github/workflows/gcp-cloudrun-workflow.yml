@@ -46,8 +46,8 @@ jobs:
 
       - name: "4 -> build and tag the container image using the Dockerfile from the source repo"
         run: |
-          gcloud build -t gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{github.sha}} .
-          gcloud push gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{github.sha}}
+          docker build -t gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{github.sha}} .
+          docker push gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{github.sha}}
 
       - name: "5 -> deploy the conatiner image to  cloud run"
         run: |
