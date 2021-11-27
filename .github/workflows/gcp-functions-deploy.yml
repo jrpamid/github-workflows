@@ -26,6 +26,11 @@ jobs:
 
       - name: "2 -> setup gcloud sdk/cli"
         uses: google-github-actions/setup-gcloud@master 
+        with:
+          project_id: ${{ env.GCP_PROJECT_ID }}
+          service_account_email: ${{ secrets.GCP_SERVERLESS_SVCACCT_EMAIL }}
+          service_account_key: ${{ secrets.GCP_SERVERLESS_SVCACCT_CREDENTIALS_KEY }}
+          export_default_credentials: true
 
       - name: "3 -> deploy cloud function"
         run: |
